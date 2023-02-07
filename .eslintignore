@@ -1,0 +1,9 @@
+# Black list.
+
+# Files and directories that are not going to be lined with ESlint.
+
+# Node dependencies directory.
+node_modules
+
+# Transpiled files directory.
+dist

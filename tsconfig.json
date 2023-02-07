@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "es2017",
+		"sourceMap": true,
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"incremental": true,
+		"skipLibCheck": true,
+		"noImplicitAny": false,
+		"strict": true,
+		"forceConsistentCasingInFileNames": false,
+		"noFallthroughCasesInSwitch": false,
+		"paths": {
+			"@artifacts/*": ["src/artifacts/*"],
+			"@controllers/*": ["src/controllers/*"],
+			"@database/*": ["src/database/*"],
+			"@dtos/*": ["src/dtos/*"],
+			"@entities/*": ["src/entities/*"],
+			"@interceptors/*": ["src/interceptors/*"],
+			"@middlewares/*": ["src/middlewares/*"],
+			"@rest_routers/*": ["src/rest_routers/*"],
+			"@services/*": ["src/services/*"]
+		}
+	}
+}

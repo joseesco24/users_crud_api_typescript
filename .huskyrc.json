@@ -1,0 +1,8 @@
+{
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run format . && git add -A . && npm run lint",
+            "commit-msg": "npx commitlint --edit"
+        }
+    }
+}
