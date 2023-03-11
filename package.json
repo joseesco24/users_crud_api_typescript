@@ -9,14 +9,17 @@
 	"readme": "readme.md",
 	"_moduleAliases": {
 		"@artifacts": "./dist/artifacts",
-		"@controllers": "./dist/controllers",
 		"@database": "./dist/database",
 		"@dtos": "./dist/dtos",
 		"@entities": "./dist/entities",
+		"@graphql_resolvers": "./dist/graphql_resolvers",
+		"@graphql_routers": "./dist/graphql_routers",
+		"@graphql_services": "./dist/graphql_services",
 		"@interceptors": "./dist/interceptors",
 		"@middlewares": "./dist/middlewares",
+		"@rest_controllers": "./dist/rest_controllers",
 		"@rest_routers": "./dist/rest_routers",
-		"@services": "./dist/services"
+		"@rest_services": "./dist/rest_services"
 	},
 	"scripts": {
 		"format": "prettier --ignore-path ./.prettierignore --config ./.prettierrc.json --write \"src/**/*.ts\"",

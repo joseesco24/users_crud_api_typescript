@@ -18,14 +18,17 @@
 		"noFallthroughCasesInSwitch": false,
 		"paths": {
 			"@artifacts/*": ["src/artifacts/*"],
-			"@controllers/*": ["src/controllers/*"],
 			"@database/*": ["src/database/*"],
 			"@dtos/*": ["src/dtos/*"],
 			"@entities/*": ["src/entities/*"],
+			"@graphql_resolvers/*": ["src/graphql_resolvers/*"],
+			"@graphql_routers/*": ["src/graphql_routers/*"],
+			"@graphql_services/*": ["src/graphql_services/*"],
 			"@interceptors/*": ["src/interceptors/*"],
 			"@middlewares/*": ["src/middlewares/*"],
+			"@rest_controllers/*": ["src/rest_controllers/*"],
 			"@rest_routers/*": ["src/rest_routers/*"],
-			"@services/*": ["src/services/*"]
+			"@rest_services/*": ["src/rest_services/*"]
 		}
 	}
 }
