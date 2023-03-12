@@ -6,7 +6,8 @@ import { Module } from "@nestjs/common"
 
 // ** info: artifacts imports
 import { DatetimeModule } from "@artifacts/datetime/datetime.module"
-import { validationSchema } from "@artifacts/env/validation_schema"
+import { validationSchema } from "@artifacts/env/validation-schema"
+import { PathModule } from "@artifacts/path/path.module"
 import config from "@artifacts/env/config"
 
 @Module({
@@ -18,6 +19,7 @@ import config from "@artifacts/env/config"
 			isGlobal: true,
 		}),
 		DatetimeModule,
+		PathModule,
 	],
 	controllers: [],
 	providers: [],
