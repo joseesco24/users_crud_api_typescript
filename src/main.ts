@@ -1,24 +1,23 @@
 /** @format */
 
-import { SwaggerModule, DocumentBuilder, OpenAPIObject } from "@nestjs/swagger"
-import { INestApplication, ValidationPipe } from "@nestjs/common"
-import { NestFactory } from "@nestjs/core"
-import { posix } from "path"
+// ** info: javascript imports
 import helmet from "helmet"
 
-import { development } from "@artifacts/env/configs"
+// ** info: nestjs imports
+import { INestApplication } from "@nestjs/common"
+import { DocumentBuilder } from "@nestjs/swagger"
+import { SwaggerModule } from "@nestjs/swagger"
+import { OpenAPIObject } from "@nestjs/swagger"
+import { ValidationPipe } from "@nestjs/common"
+import { NestFactory } from "@nestjs/core"
 
+// ** info: app module imports
 import { AppModule } from "./app.module"
 
 async function main(): Promise<void> {
 	// Setting up the main server.
 
 	const app: INestApplication = await NestFactory.create(AppModule)
-
-	// Setting up app global prefix.
-
-	const appPath: string = posix.join("statistical", "shd", "api", "v1")
-	app.setGlobalPrefix(appPath)
 
 	// Setting up the main server global pipes.
 
@@ -37,11 +36,8 @@ async function main(): Promise<void> {
 
 	// Setting up swagger documentation.
 
-	if (process.env.ENVIRONMENT_MODE === development) {
-		const config: Omit<OpenAPIObject, "paths"> = new DocumentBuilder()
-			.setTitle("Shd Backend Core Microservice")
-			.setVersion("1.0.0")
-			.build()
+	if (process.env.ENVIRONMENT_MODE === "development") {
+		const config: Omit<OpenAPIObject, "paths"> = new DocumentBuilder().build()
 		const document: OpenAPIObject = SwaggerModule.createDocument(app, config)
 		SwaggerModule.setup("apispec", app, document)
 	}

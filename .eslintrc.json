@@ -37,10 +37,7 @@
 			}
 		],
 		"@typescript-eslint/class-literal-property-style": ["error", "fields"],
-		"@typescript-eslint/consistent-indexed-object-style": [
-			"error",
-			"index-signature"
-		],
+		"@typescript-eslint/consistent-indexed-object-style": ["error", "index-signature"],
 		"@typescript-eslint/consistent-type-assertions": [
 			"error",
 			{
@@ -160,14 +157,8 @@
 				"checkMethodDeclarations": true
 			}
 		],
-		"@typescript-eslint/require-array-sort-compare": [
-			"error",
-			{ "ignoreStringArrays": true }
-		],
-		"@typescript-eslint/restrict-plus-operands": [
-			"error",
-			{ "checkCompoundAssignments": true, "allowAny": false }
-		],
+		"@typescript-eslint/require-array-sort-compare": ["error", { "ignoreStringArrays": true }],
+		"@typescript-eslint/restrict-plus-operands": ["error", { "checkCompoundAssignments": true, "allowAny": false }],
 		"@typescript-eslint/restrict-template-expressions": [
 			"error",
 			{
@@ -193,10 +184,7 @@
 			}
 		],
 		"@typescript-eslint/switch-exhaustiveness-check": "off",
-		"@typescript-eslint/triple-slash-reference": [
-			"error",
-			{ "types": "prefer-import" }
-		],
+		"@typescript-eslint/triple-slash-reference": ["error", { "types": "prefer-import" }],
 		"@typescript-eslint/type-annotation-spacing": "off",
 		"@typescript-eslint/typedef": [
 			"warn",

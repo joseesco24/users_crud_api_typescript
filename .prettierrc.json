@@ -3,11 +3,13 @@
 	"useTabs": true,
 	"semi": false,
 	"singleQuote": false,
-	"proseWrap": "never",
+	"proseWrap": "preserve",
 	"quoteProps": "consistent",
 	"bracketSpacing": true,
 	"bracketSameLine": false,
-	"arrowParens": "always",
+	"arrowParens": "avoid",
 	"insertPragma": true,
-	"endOfLine": "lf"
+	"endOfLine": "lf",
+	"printWidth": 150,
+	"rangeStart": 0
 }

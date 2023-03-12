@@ -22,8 +22,8 @@
 		"@rest_services": "./dist/rest_services"
 	},
 	"scripts": {
-		"format": "prettier --ignore-path ./.prettierignore --config ./.prettierrc.json --write \"src/**/*.ts\"",
-		"lint": "eslint --ignore-path ./.eslintignore --config ./.eslintrc.json \"src/**/*.ts\" --fix",
+		"format": "prettier --config ./.prettierrc.json --write \"src/**/*.ts\"",
+		"lint": "eslint --config ./.eslintrc.json \"src/**/*.ts\" --fix",
 		"postinstall": "npx husky install",
 		"start-dev": "nest start --watch",
 		"start-app": "node dist/main",
