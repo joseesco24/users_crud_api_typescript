@@ -8,7 +8,7 @@ import * as Joi from "joi"
 const environmentMode: string[] = ["development", "production", "testing"]
 const loggingMode: string[] = ["structured", "pretty"]
 
-export const validationSchema: Joi.ObjectSchema<any> = Joi.object({
+export const configSchema: Joi.ObjectSchema<any> = Joi.object({
 	// ** info: app configs
 	APP_ENVIRONMENT_MODE: Joi.string()
 		.required()
