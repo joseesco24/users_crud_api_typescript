@@ -8,6 +8,7 @@ import { Module } from "@nestjs/common"
 import { DatetimeModule } from "@artifacts/datetime/datetime.module"
 import { validationSchema } from "@artifacts/env/validation-schema"
 import { PathModule } from "@artifacts/path/path.module"
+import { UuidModule } from "@artifacts/uuid/uuid.module"
 import config from "@artifacts/env/config"
 
 @Module({
@@ -20,6 +21,7 @@ import config from "@artifacts/env/config"
 		}),
 		DatetimeModule,
 		PathModule,
+		UuidModule,
 	],
 	controllers: [],
 	providers: [],
