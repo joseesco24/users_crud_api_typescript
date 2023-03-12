@@ -5,6 +5,7 @@ import { ConfigModule } from "@nestjs/config"
 import { Module } from "@nestjs/common"
 
 // ** info: artifacts imports
+import { DatetimeModule } from "@artifacts/datetime/datetime.module"
 import { validationSchema } from "@artifacts/env/validation_schema"
 import config from "@artifacts/env/config"
 
@@ -16,6 +17,7 @@ import config from "@artifacts/env/config"
 			load: [config],
 			isGlobal: true,
 		}),
+		DatetimeModule,
 	],
 	controllers: [],
 	providers: [],
