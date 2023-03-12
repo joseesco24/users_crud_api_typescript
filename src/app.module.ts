@@ -59,19 +59,16 @@ if (environmentMode === "production") {
 	pinoConfig = pinoDevConfig
 }
 
+// todo: move env config to separated file
+const configOptions: object = {
+	validationSchema: configSchema,
+	envFilePath: ".env",
+	load: [config],
+	isGlobal: true,
+}
+
 @Module({
-	imports: [
-		ConfigModule.forRoot({
-			validationSchema: configSchema,
-			envFilePath: ".env",
-			load: [config],
-			isGlobal: true,
-		}),
-		LoggerModule.forRoot(pinoConfig),
-		DatetimeModule,
-		PathModule,
-		UuidModule,
-	],
+	imports: [ConfigModule.forRoot(configOptions), LoggerModule.forRoot(pinoConfig), DatetimeModule, PathModule, UuidModule],
 	controllers: [],
 	providers: [],
 })
