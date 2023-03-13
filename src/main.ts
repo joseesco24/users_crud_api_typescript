@@ -43,7 +43,7 @@ async function main(): Promise<void> {
 	// ---------------------------------------------------------------------------------------------------------------------
 	// ** info: starting the main server
 	// ---------------------------------------------------------------------------------------------------------------------
-	await app.listen(Number(process.env.PORT as string) || 3000)
+	await app.listen(Number(process.env.APP_SERVER_PORT as string))
 }
 
 main()

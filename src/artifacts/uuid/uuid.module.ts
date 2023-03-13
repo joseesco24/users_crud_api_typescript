@@ -9,7 +9,7 @@ import { UuidProvider } from "@artifacts/uuid/uuid.provider"
 
 @Global()
 @Module({
-	controllers: [UuidProvider],
+	exports: [UuidProvider],
 	providers: [UuidProvider],
 })
 export class UuidModule {}

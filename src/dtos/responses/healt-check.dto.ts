@@ -7,25 +7,25 @@ import { IsBoolean } from "class-validator"
 export class HealthCheckResponseDto {
 	@IsBoolean()
 	@IsNotEmpty()
-	public readonly redisDownloadConnection!: boolean
+	public redisDownloadConnection!: boolean
 
 	@IsBoolean()
 	@IsNotEmpty()
-	public readonly redisUploadConnection!: boolean
+	public redisUploadConnection!: boolean
 
 	@IsBoolean()
 	@IsNotEmpty()
-	public readonly postgresQuerySession!: boolean
+	public postgresQuerySession!: boolean
 
 	@IsBoolean()
 	@IsNotEmpty()
-	public readonly allConnectionsOk!: boolean
+	public allConnectionsOk!: boolean
 
 	@IsNumber()
 	@IsNotEmpty()
-	public readonly memoryUsage!: number
+	public memoryUsage!: number
 
 	@IsNumber()
 	@IsNotEmpty()
-	public readonly cpuUsage!: number
+	public cpuUsage!: number
 }

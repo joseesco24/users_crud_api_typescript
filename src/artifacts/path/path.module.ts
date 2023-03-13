@@ -9,7 +9,7 @@ import { PathProvider } from "@artifacts/path/path.provider"
 
 @Global()
 @Module({
-	controllers: [PathProvider],
+	exports: [PathProvider],
 	providers: [PathProvider],
 })
 export class PathModule {}

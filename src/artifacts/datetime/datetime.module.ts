@@ -9,7 +9,7 @@ import { DatetimeProvider } from "@artifacts/datetime/datetime.provider"
 
 @Global()
 @Module({
-	controllers: [DatetimeProvider],
+	exports: [DatetimeProvider],
 	providers: [DatetimeProvider],
 })
 export class DatetimeModule {}
