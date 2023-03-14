@@ -4,6 +4,8 @@
 import { ClassSerializerInterceptor } from "@nestjs/common"
 import { APP_INTERCEPTOR } from "@nestjs/core"
 import { ConfigModule } from "@nestjs/config"
+import { Response } from "@nestjs/common"
+import { Request } from "@nestjs/common"
 import { Module } from "@nestjs/common"
 
 // ** info: nest pino
@@ -22,7 +24,7 @@ import config from "@artifacts/env/config.provider"
 // ** info: rest routers imports
 import { RestRoutersModule } from "@rest_routers/rest-routers.module"
 
-const environmentMode: string = process.env.APP_ENVIRONMENT_MODE as string
+const loggingMode: string = process.env.APP_LOGGING_MODE as string
 
 // todo: move pino config to separated file
 const formatters: object = {
@@ -32,8 +34,12 @@ const formatters: object = {
 }
 
 // todo: move pino config to separated file
-const pinoProdConfig: object = {
+const pinoStructuredConfig: object = {
 	pinoHttp: {
+		customProps: (request: Request, response: Response) => ({
+			context: "HTTP",
+			random: Math.random(),
+		}),
 		base: { pid: process.pid },
 		formatters: formatters,
 		messageKey: "message",
@@ -43,14 +49,14 @@ const pinoProdConfig: object = {
 }
 
 // todo: move pino config to separated file
-const pinoDevConfig: object = {
+const pinoPrettyConfig: object = {
 	pinoHttp: {
 		transport: {
 			target: "pino-pretty",
 			options: {
-				ignore: "pid,hostname,err",
-				levelFirst: true,
-				singleLine: true,
+				translateTime: "UTC:yyyy-mm-dd HH:MM:ss.l",
+				singleLine: false,
+				hideObject: true,
 				colorize: true,
 			},
 		},
@@ -61,10 +67,10 @@ const pinoDevConfig: object = {
 let pinoConfig: object
 
 // ** info: selecting logger config
-if (environmentMode === "production") {
-	pinoConfig = pinoProdConfig
+if (loggingMode === "structured") {
+	pinoConfig = pinoStructuredConfig
 } else {
-	pinoConfig = pinoDevConfig
+	pinoConfig = pinoPrettyConfig
 }
 
 // todo: move env config to separated file
