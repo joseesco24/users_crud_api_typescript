@@ -5,11 +5,11 @@ import { Module } from "@nestjs/common"
 import { Global } from "@nestjs/common"
 
 // ** info: artifacts imports
-import { ResourcesProvider } from "@artifacts/resources/resources.provider"
+import { LoggingProvider } from "@artifacts/logging/logging.provider"
 
 @Global()
 @Module({
-	exports: [ResourcesProvider],
-	providers: [ResourcesProvider],
+	exports: [LoggingProvider],
+	providers: [LoggingProvider],
 })
-export class ResourcesModule {}
+export class LoggingModule {}
