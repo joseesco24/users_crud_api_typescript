@@ -5,10 +5,11 @@ import { Injectable } from "@nestjs/common"
 import { Response } from "@nestjs/common"
 import { Request } from "@nestjs/common"
 
+// ** info: artifacts imports
+import { EnvProvider } from "@artifacts/env/env.provider"
+
 @Injectable()
 export class LoggingProvider {
-	private readonly loggingMode: string = process.env.APP_LOGGING_MODE as string
-
 	private readonly formatters: object = {
 		level(label: string) {
 			return { severity: label }
@@ -44,8 +45,10 @@ export class LoggingProvider {
 		},
 	}
 
+	public constructor(private readonly envProvider: EnvProvider) {}
+
 	public getLoggerConfig(): object {
-		if (this.loggingMode === "structured") {
+		if (this.envProvider.appLoggingMode() === "structured") {
 			return this.structuredConfig
 		} else {
 			return this.prettyConfig
