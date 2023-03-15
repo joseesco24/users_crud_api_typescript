@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 # ** info: declaration of the building image base version
-FROM node:18.14.0 as building
+FROM node:18.15.0 as building
 
 # ** info: declaration of the building image working directory
 ARG WORKDIR=/home/building
@@ -44,7 +44,7 @@ RUN npm run build
 # ---------------------------------------------------------------------------------------------------------------------
 
 # ** info: declaration of the production image base version
-FROM node:18.14.0-alpine3.17
+FROM node:18.15.0-alpine3.17
 
 # ** info: declaration of the production working directory and username inside the production image
 ARG USERNAME=production
