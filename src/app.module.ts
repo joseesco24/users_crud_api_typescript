@@ -13,29 +13,18 @@ import { LoggerModule } from "nestjs-pino"
 import { ResourcesModule } from "@artifacts/resources/resources.module"
 import { DatetimeModule } from "@artifacts/datetime/datetime.module"
 import { LoggingModule } from "@artifacts/logging/logging.module"
-import { configSchema } from "@artifacts/env/config.schema"
 import { PathModule } from "@artifacts/path/path.module"
 import { UuidModule } from "@artifacts/uuid/uuid.module"
+import { EnvModule } from "@artifacts/env/env.module"
 
 import { LoggingProvider } from "@artifacts/logging/logging.provider"
-
-// ** info: configs imports
-import config from "@artifacts/env/config.provider"
 
 // ** info: rest routers imports
 import { RestRoutersModule } from "@rest_routers/rest-routers.module"
 
-// todo: move env config to separated file
-const configOptions: object = {
-	validationSchema: configSchema,
-	envFilePath: ".env",
-	load: [config],
-	isGlobal: true,
-}
-
 @Module({
 	imports: [
-		ConfigModule.forRoot(configOptions),
+		ConfigModule.forRoot({ envFilePath: ".env" }),
 		LoggerModule.forRootAsync({
 			useFactory: (loggingProvider: LoggingProvider): object => {
 				return loggingProvider.getLoggerConfig()
@@ -47,6 +36,7 @@ const configOptions: object = {
 		ResourcesModule,
 		DatetimeModule,
 		LoggingModule,
+		EnvModule,
 		PathModule,
 		UuidModule,
 	],

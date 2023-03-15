@@ -14,6 +14,9 @@ import { Logger } from "nestjs-pino"
 // ** info: app module imports
 import { AppModule } from "./app.module"
 
+// ** info: artifacts imports
+import { EnvModule } from "@artifacts/env/env.module"
+
 async function main(): Promise<void> {
 	// ---------------------------------------------------------------------------------------------------------------------
 	// ** info: setting up the main server
@@ -22,6 +25,11 @@ async function main(): Promise<void> {
 		bufferLogs: true,
 	})
 	app.useLogger(app.get(Logger))
+
+	// ---------------------------------------------------------------------------------------------------------------------
+	// ** info: setting env module
+	// ---------------------------------------------------------------------------------------------------------------------
+	await NestFactory.create(EnvModule)
 
 	// ---------------------------------------------------------------------------------------------------------------------
 	// ** info: setting up the main server global pipes
