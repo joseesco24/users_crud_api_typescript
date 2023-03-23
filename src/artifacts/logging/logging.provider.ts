@@ -12,17 +12,31 @@ import { EnvProvider } from "@artifacts/env/env.provider"
 export class LoggingProvider {
 	private readonly formatters: object = {
 		level(label: string) {
-			return { severity: label }
+			return { severity: label.toUpperCase() }
 		},
 	}
 
+	private readonly serializers: object = {
+		req(request: Request) {
+			return request
+		},
+		res(response: Response) {
+			return response
+		},
+	}
+
+	private readonly customAttributeKeys: { [key: string]: string } = { req: "request", res: "response" }
+
 	private readonly structuredConfig: object = {
 		pinoHttp: {
+			// eslint-disable-next-line no-unused-vars
 			customProps: (request: Request, response: Response) => ({
-				context: "HTTP",
 				random: Math.random(),
 			}),
-			base: { pid: process.pid },
+			base: undefined,
+			wrapSerializers: true,
+			customAttributeKeys: this.customAttributeKeys,
+			serializers: this.serializers,
 			formatters: this.formatters,
 			messageKey: "message",
 			timestamp: false,
