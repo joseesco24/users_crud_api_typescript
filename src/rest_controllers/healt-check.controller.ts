@@ -2,19 +2,17 @@
 
 // ** info: nestjs imports
 import { Injectable } from "@nestjs/common"
-import { Logger } from "@nestjs/common"
 
 // ** info: dtos imports
 import { HealthCheckResponseDto } from "@dtos/responses/healt-check.dto"
 
 // ** info: artifacts imports
 import { ResourcesProvider } from "@artifacts/resources/resources.provider"
+import { LoggingProvider } from "@artifacts/logging/logging.provider"
 
 @Injectable()
 export class HealthCheckController {
-	private readonly logger: Logger = new Logger(HealthCheckController.name)
-
-	public constructor(private readonly resourcesProvider: ResourcesProvider) {}
+	public constructor(private readonly resourcesProvider: ResourcesProvider, private readonly loggingProvider: LoggingProvider) {}
 
 	public getHealthCheck(): HealthCheckResponseDto {
 		const response: HealthCheckResponseDto = new Object() as HealthCheckResponseDto
@@ -27,7 +25,7 @@ export class HealthCheckController {
 		response.memoryUsage = this.resourcesProvider.getMemoryUsage()
 		response.cpuUsage = this.resourcesProvider.getCpuUsage()
 
-		this.logger.debug("all databases are healthy")
+		this.loggingProvider.debug("all databases are healthy")
 
 		return response
 	}
