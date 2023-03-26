@@ -17,7 +17,20 @@ import { EnvModule } from "@artifacts/env/env.module"
 // ** info: rest routers imports
 import { RestRoutersModule } from "@rest_routers/rest-routers.module"
 
+// ** info: interceptors imports
+import { LoggerContextualizerInterceptor } from "@interceptors/logger-contextualizer.interceptor"
+
 @Module({
+	providers: [
+		{
+			useClass: ClassSerializerInterceptor,
+			provide: APP_INTERCEPTOR,
+		},
+		{
+			useClass: LoggerContextualizerInterceptor,
+			provide: APP_INTERCEPTOR,
+		},
+	],
 	imports: [
 		ConfigModule.forRoot({ envFilePath: ".env" }),
 		RestRoutersModule,
@@ -27,12 +40,6 @@ import { RestRoutersModule } from "@rest_routers/rest-routers.module"
 		EnvModule,
 		PathModule,
 		UuidModule,
-	],
-	providers: [
-		{
-			useClass: ClassSerializerInterceptor,
-			provide: APP_INTERCEPTOR,
-		},
 	],
 })
 export class AppModule {}
