@@ -25,7 +25,7 @@ export class HealthCheckController {
 		response.memoryUsage = this.resourcesProvider.getMemoryUsage()
 		response.cpuUsage = this.resourcesProvider.getCpuUsage()
 
-		this.loggingProvider.debug("all databases are healthy")
+		this.loggingProvider.info("all databases are healthy")
 
 		return response
 	}
