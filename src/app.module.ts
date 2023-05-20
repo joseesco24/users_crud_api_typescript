@@ -18,21 +18,47 @@ import { EnvModule } from "@artifacts/env/env.module"
 import { RestRoutersModule } from "@rest_routers/rest-routers.module"
 
 // ** info: interceptors imports
+import { HeadersSignatureManagerInterceptor } from "@interceptors/headers-signature-manager.interceptor"
 import { LoggerContextualizerInterceptor } from "@interceptors/logger-contextualizer.interceptor"
+import { ResponseValidatorInterceptor } from "@interceptors/response-validator.interceptor"
+import { AuthenticationInterceptor } from "@interceptors/authentication.interceptor"
+import { ErrorHandlerInterceptor } from "@interceptors/error-handler.interceptor"
+
+// ** info: nest cls imports
+import { ClsModule } from "nestjs-cls"
 
 @Module({
 	providers: [
+		{
+			useClass: LoggerContextualizerInterceptor,
+			provide: APP_INTERCEPTOR,
+		},
+		{
+			useClass: ErrorHandlerInterceptor,
+			provide: APP_INTERCEPTOR,
+		},
 		{
 			useClass: ClassSerializerInterceptor,
 			provide: APP_INTERCEPTOR,
 		},
 		{
-			useClass: LoggerContextualizerInterceptor,
+			useClass: AuthenticationInterceptor,
+			provide: APP_INTERCEPTOR,
+		},
+		{
+			useClass: ResponseValidatorInterceptor,
+			provide: APP_INTERCEPTOR,
+		},
+		{
+			useClass: HeadersSignatureManagerInterceptor,
 			provide: APP_INTERCEPTOR,
 		},
 	],
 	imports: [
 		ConfigModule.forRoot({ envFilePath: ".env" }),
+		ClsModule.forRoot({
+			middleware: { mount: true },
+		}),
 		RestRoutersModule,
 		ResourcesModule,
 		DatetimeModule,

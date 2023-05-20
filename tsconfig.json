@@ -18,6 +18,7 @@
 		"noFallthroughCasesInSwitch": false,
 		"paths": {
 			"@artifacts/*": ["src/artifacts/*"],
+			"@custom-exceptions/*": ["src/custom-exceptions/*"],
 			"@database/*": ["src/database/*"],
 			"@dtos/*": ["src/dtos/*"],
 			"@entities/*": ["src/entities/*"],
