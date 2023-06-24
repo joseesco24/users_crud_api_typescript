@@ -20,7 +20,7 @@ COPY ["tsconfig.json" ,"$WORKDIR/"]
 COPY ["package.json" ,"$WORKDIR/"]
 
 # ** info: installing the dependencies and latest npm version
-RUN npm ci --only=production && npm cache clean --force
+RUN npm clean-install --only=production --ignore-scripts && npm cache clean --force
 
 # ** info: validating dependencies integrity
 RUN npm audit
@@ -67,7 +67,7 @@ RUN chmod 555 $WORKDIR
 WORKDIR $WORKDIR
 
 # ** info: installing the dependencies and latest npm version
-RUN npm ci --only=production && npm cache clean --force
+RUN npm clean-install --only=production --ignore-scripts && npm cache clean --force
 
 # ** info: validating dependencies integrity
 RUN npm audit
