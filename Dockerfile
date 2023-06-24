@@ -20,7 +20,7 @@ COPY ["tsconfig.json" ,"$WORKDIR/"]
 COPY ["package.json" ,"$WORKDIR/"]
 
 # ** info: installing the dependencies and latest npm version
-RUN npm install
+RUN npm ci --only=production && npm cache clean --force
 
 # ** info: validating dependencies integrity
 RUN npm audit
@@ -29,9 +29,7 @@ RUN npm audit
 COPY ["src", "$WORKDIR/src"]
 
 # ** info: running the application tests
-# ! warning: test unabled
-# todo: Restore building in this stage
-# RUN python -m unittest -v $WORKDIR/src/building/*.py
+RUN npm run test
 
 # ** info: removing the typescript testing files
 RUN find . | grep -E "(/.spec.ts$|/.spec.js$)" | xargs rm -rf
@@ -60,16 +58,16 @@ COPY --from=building ["/home/building/package.json","$WORKDIR/"]
 # ** info: changing the premises of the working directory
 RUN chown -R $USERNAME $WORKDIR
 
-RUN find "$WORKDIR/" -type d -exec chmod 755 {} \;
-RUN find "$WORKDIR/" -type f -exec chmod 755 {} \;
+RUN find "$WORKDIR/" -type d -exec chmod 555 {} \;
+RUN find "$WORKDIR/" -type f -exec chmod 555 {} \;
 
-RUN chmod 755 $WORKDIR
+RUN chmod 555 $WORKDIR
 
 # ** info: establishing the default working directory inside the production image
 WORKDIR $WORKDIR
 
 # ** info: installing the dependencies and latest npm version
-RUN npm install --omit=dev --ignore-scripts
+RUN npm ci --only=production && npm cache clean --force
 
 # ** info: validating dependencies integrity
 RUN npm audit
