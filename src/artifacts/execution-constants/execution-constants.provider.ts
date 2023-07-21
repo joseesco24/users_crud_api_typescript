@@ -22,7 +22,10 @@ export class ExecutionConstantsProvider {
 	public readonly serviceStartTime: Date
 	public readonly serviceId: string
 
-	public constructor(private readonly datetimeProvider: DatetimeProvider, private readonly uuidProvider: UuidProvider) {
+	public constructor(
+		private readonly datetimeProvider: DatetimeProvider,
+		private readonly uuidProvider: UuidProvider
+	) {
 		this.serviceStartTime = datetimeProvider.getColDate()
 		this.serviceId = uuidProvider.getStrUuid()
 	}
